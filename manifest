@@ -1,5 +1,5 @@
-name: Chat
-description: Converse among happening members.
-icon: chat2
+name: Cowards
+description: Anonymous messaging, for gossip and giggles.
+icon: comedy
 api: 2
-store: 800
+store: 500
