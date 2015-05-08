@@ -25,10 +25,10 @@ exports.render = !->
 			# normal message
 			Dom.div !->
 				Dom.cls 'chat-msg'
-				
+				Dom.cls 'chat-center'
 				Dom.div !->
-					Dom.cls 'chat-content'
-					Dom.style margin: '2px'
+					Dom.cls 'chat-content' # does appropriate flexing
+					Dom.style textAlign: 'center'
 					photoKey = msg.get('photo')
 					if photoKey
 						Dom.img !->
@@ -49,6 +49,8 @@ exports.render = !->
 
 					Dom.div !->
 						Dom.cls 'chat-info'
+						Dom.text tr("Anonymous coward")
+						Dom.text " • "
 						if time = msg.get('time')
 							Time.deltaText time, 'short'
 						else
@@ -56,7 +58,10 @@ exports.render = !->
 							Ui.dots()
 
 	Page.setFooter !->
-		opts = {}
+		opts =
+			rpcArg: false
+			placeholder: tr("Send an anonymous message...")
+		###
 		Dom.div !->
 			Dom.style
 				fontSize: '85%'
@@ -65,31 +70,34 @@ exports.render = !->
 
 			Dom.div !->
 				Dom.style Flex: 1
-				Dom.text tr("Messages or photos will be anonymous.")
+				Dom.text tr("Your name will be hidden")
 				#Dom.div !->
 				#	Dom.style fontSize: '85%'
 				#	Dom.text tr("(even for group admins)")
+		###
+
+		Dom.div !->
+			Dom.style
+				Box: 'middle', borderBottom: '1px solid #ddd', backgroundColor: '#fafafa'
 
 			Dom.div !->
-				Dom.style
-					Box: 'middle'
-					padding: '3px 6px'
+				Dom.style Box: 'middle', padding: '6px', fontSize: '90%'
 				Dom.input !->
 					Dom.cls 'form-check'
 					Dom.prop 'type', 'checkbox'
 					Dom.style
-						margin: '0 3px 0 0'
+						margin: '0 4px 0 8px'
 						zoom: '80%'
 						pointerEvents: 'none' # tap is handled by parent
 				inputE = Dom.last()
-
 				Dom.div !->
-					Dom.text tr("15s delay")
+					Dom.text tr("Delay message for 15 seconds")
 
 				Dom.onTap !->
 					checked = !inputE.prop('checked')
 					inputE.prop 'checked', checked
 					opts.rpcArg = checked # bit of a hack to set it on the ref, but works well
+					opts.predict = !checked
 			
 		Chat.renderInput opts
 

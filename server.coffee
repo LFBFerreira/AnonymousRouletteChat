@@ -24,9 +24,8 @@ post = (msg, eventText) !->
 	Db.shared.set Math.floor(id/100), id%100, msg
 
 	Event.create
-		unit: 'msg'
-		text: "Coward: #{eventText}"
-		read: [Plugin.userId()]
+		text: "Anonymous: #{eventText}"
+		sender: Plugin.userId()
 
 exports.client_removePhoto = (num) !->
 	Plugin.assertAdmin()
