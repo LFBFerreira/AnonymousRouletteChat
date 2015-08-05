@@ -1,5 +1,3 @@
-name: Anonymous chat
-description: Anonymous messaging, for gossip and giggles.
-icon: comedy
+name: Anonymous Roulette Chat
+description: Chat anonymously with your friends, but sometimes be surprised when the message sender's name is shown
 api: 2
-store: 750
