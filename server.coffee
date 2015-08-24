@@ -21,13 +21,12 @@ post = (msg, eventText) !->
 	msg.time = Math.floor(Date.now()*.001)
 
 	randNum = Math.random()
-	msg.prob = randNum.toFixed(2)
 
-	if randNum < .2
-		msg.userId = Plugin.userId()
-		msg.showId = true
-	else
-		msg.showId = false
+	# set if message is to be shown or not
+	msg.showId = if (randNum < .2) then true else false
+
+	msg.userId = Plugin.userId()
+	msg.prob = randNum.toFixed(2)
 
 	id = Db.shared.modify 'maxId', (v) -> (v||0)+1
 	Db.shared.set Math.floor(id/100), id%100, msg
