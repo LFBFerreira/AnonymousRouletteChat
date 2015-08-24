@@ -1,3 +1,4 @@
 name: Anonymous Roulette Chat
-description: Chat anonymously with your friends, but sometimes be surprised when the message sender's name is shown
+description: Chat anonymously with your friends, and sometimes be surprised when the message is not anonymous anymore!
+icon: comedy
 api: 2
