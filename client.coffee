@@ -49,20 +49,21 @@ exports.render = !->
 
 					Dom.div !->
 						Dom.cls 'chat-info'
-						# Dom.text tr("Anonymous coward")
 
 						if msg.get('showId') == true
 							if userId = msg.get('userId')
+								Dom.style color: '#29A329'
 								Dom.text Plugin.userName(userId)
 							else
 								Dom.text "??"
 						else
 							Dom.text tr("Anonymous coward")
 
-						if prob = msg.get('prob')
-							Dom.text "(" + prob + ")"
-						else
-							Dom.text "(-)"
+						# display the probability, just for debugging
+						#if prob = msg.get('prob')
+						#	Dom.text " (" + prob + ")"
+						#else
+						#	Dom.text "(-)"
 
 						Dom.text " • "
 						if time = msg.get('time')
